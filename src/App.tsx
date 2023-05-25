@@ -11,7 +11,6 @@ function App() {
   return (
     <>
     <ShoppingCartProvider >
-
     <CssBaseline />
     <Navbar />
     <Container sx={{ mb: 4 }}>
