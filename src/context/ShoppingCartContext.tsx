@@ -1,5 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { ShoppingCart } from "../components/ShoppingCart";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 type ShoppingCartProviderProps = {
   children: ReactNode;
@@ -21,28 +22,30 @@ type ShoppingCartContextProps = {
   cartItems: CartItem[];
 };
 
-const ShoppingCartContext = createContext<ShoppingCartContextProps>({
-    openCart: function (): void {
-        throw new Error("Function not implemented.");
-    },
-    closeCart: function (): void {
-        throw new Error("Function not implemented.");
-    },
-    getItemQuantity: function (id: number): number {
-        throw new Error("Function not implemented.");
-    },
-    increaseCartQuantity: function (id: number): void {
-        throw new Error("Function not implemented.");
-    },
-    decreaseCartQuantity: function (id: number): void {
-        throw new Error("Function not implemented.");
-    },
-    removeFromCart: function (id: number): void {
-        throw new Error("Function not implemented.");
-    },
-    cartQuantity: 0,
-    cartItems: []
-});
+// const ShoppingCartContext = createContext<ShoppingCartContextProps>({
+//     openCart: function (): void {
+//         throw new Error("Function not implemented.");
+//     },
+//     closeCart: function (): void {
+//         throw new Error("Function not implemented.");
+//     },
+//     getItemQuantity: function (id: number): number {
+//         throw new Error("Function not implemented.");
+//     },
+//     increaseCartQuantity: function (id: number): void {
+//         throw new Error("Function not implemented.");
+//     },
+//     decreaseCartQuantity: function (id: number): void {
+//         throw new Error("Function not implemented.");
+//     },
+//     removeFromCart: function (id: number): void {
+//         throw new Error("Function not implemented.");
+//     },
+//     cartQuantity: 0,
+//     cartItems: []
+// });
+
+const ShoppingCartContext = createContext({} as ShoppingCartContextProps);
 
 export function useShoppingCart() {
   return useContext(ShoppingCartContext);
@@ -51,7 +54,7 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("shopping-cart", []);
 
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
@@ -116,7 +119,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       }}
     >
       {children}
-      <ShoppingCart />
+      <ShoppingCart isOpen={isOpen}/>
     </ShoppingCartContext.Provider>
   );
 }
