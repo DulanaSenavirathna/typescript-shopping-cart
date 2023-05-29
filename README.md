@@ -1,3 +1,14 @@
+# Project Peview:
+https://dulanasenavirathna.github.io/typescript-shopping-cart/
+
+## This Project Uses:
+- Routing
+- Navbar
+- Store Page
+- Shopping Cart Context
+- Shopping Cart Component
+- useLocalStorage Hook
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

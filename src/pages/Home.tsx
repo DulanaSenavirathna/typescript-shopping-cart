@@ -1,7 +1,22 @@
+import { Typography } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 export function Home() {
-    return <>
-    <h1>Home</h1>
-  
+  return (
+    <>
+      <Typography
+        sx={{
+          mt: 2,
+          letterSpacing: ".1rem",
+        }}
+      >
+        This is the <b>HOME PAGE</b> and this web includes functional shopping
+        cart. I use React, TypeScript and MUI for build this..
+      </Typography>
+
+      <NavLink to="/store">
+        <h1>Visit Store Page</h1>
+      </NavLink>
     </>
+  );
 }
