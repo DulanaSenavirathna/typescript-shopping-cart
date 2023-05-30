@@ -1,4 +1,4 @@
-# Project Peview:
+# Project Preview:
 https://dulanasenavirathna.github.io/typescript-shopping-cart/
 
 ## This Project Uses:
